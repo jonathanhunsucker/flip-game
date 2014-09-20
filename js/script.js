@@ -49,7 +49,6 @@ function Board(tileAbstraction) {
     if (!tileAbstraction) {
         throw new Error('asdf');
     }
-<<<<<<< HEAD
     this.tiles = this.generateTiles(tileAbstraction.map);
     this.size = tileAbstraction.map.length;
     this.turns = 0;
@@ -199,6 +198,8 @@ app.controller('IndexController', function ($scope) {
     $scope.board = board.grid;
 });
 
+/*
+// for testing the board without having to click through the ui
 var a = new Board(tileAbstractions.easy);
 a.select(0, 0);
 console.log(a.toString());
@@ -215,3 +216,4 @@ a.select(1,1);
 console.log(a.toString());
 a.flip('right');
 console.log(a.toString());
+*/
