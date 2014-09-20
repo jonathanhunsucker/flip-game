@@ -61,8 +61,8 @@ function Board(tileAbstraction) {
         throw new Error('asdf');
     }
     this.directions = ['down', 'up', 'right', 'left'];
-    this.tiles = this.generateTiles(tileAbstraction.map);
-    this.size = tileAbstraction.map.length;
+    this.tiles = this.generateTiles(tileAbstraction.blueprint);
+    this.size = tileAbstraction.blueprint.length;
     this.turns = 0;
     this.goal = tileAbstraction.goal;
     this.history = new Array(); //stack
@@ -229,7 +229,7 @@ Board.prototype.toString = function () {
 
 var tileAbstractions = {
     'easy': {
-        'map': [
+        'blueprint': [
             [1, 0, 0, 0],
             [0, 0, -1, 0],
             [0, 0, 0, 0],
