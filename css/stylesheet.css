@@ -43,6 +43,8 @@ button.span-all {
     margin: 2.5%;
     background-color: #EEEDFF;
     padding: 5px;
+    border: 1px solid grey;
+    border-radius: 5px;
 }
 
 table {
