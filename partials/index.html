@@ -10,7 +10,7 @@
                 <table id="Board">
                     <tbody>
                         <tr ng-repeat="(y, row) in board.grid">
-                            <td ng-repeat="(x, tile) in row" class="tile tile-{{ tile.state }}" ng-class="{'tile-selected': tile.isSelected}" ng-click="tile.toggleSelected()"></td>
+                            <td ng-repeat="(x, tile) in row" class="tile tile-{{ tile.state }}" ng-class="{'tile-selected': tile.isSelected}" ng-mousedown="globalState.touchDownTileIsSelected = tile.isSelected" fl-clickdrag="(globalState.touchDownTileIsSelected ? tile.unselect() : tile.select())"></td>
                         </tr>
                     </tbody>
                 </table>

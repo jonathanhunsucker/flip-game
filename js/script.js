@@ -8,6 +8,33 @@ app.config(function ($routeProvider) {
         controller: 'IndexController'
     });
 });
+app.directive('flClickdrag', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var mouseHasLeft = 'false';
+            element.bind('mousedown', function () {
+                callAttrib();
+                mouseIsDown = true;
+            });
+            element.bind('mouseenter', function () {
+                if (mouseIsDown) {
+                    callAttrib();
+                }
+            });
+            element.bind('mouseexit', function () {
+                mouseIsDown = false;
+            });
+            function callAttrib() {
+                scope.$apply(attrs.flClickdrag);
+            }
+        }
+    };
+});
+var mouseIsDown = false;
+angular.element(document).bind('mouseup', function () {
+    mouseIsDown = false;
+});
 
 function Tile(x, y, stateChar) {
     this.x = x || 0;
@@ -241,6 +268,9 @@ var tileAbstractions = {
 
 app.controller('IndexController', function ($scope) {
     var board = new Board(tileAbstractions.easy);
+    $scope.globalState = {
+        'touchDownTileIsSelected': false
+    };
     $scope.board = board;
 });
 
