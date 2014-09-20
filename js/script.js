@@ -262,12 +262,23 @@ var tileAbstractions = {
             [0, 0, 0, 0],
             [0, 0, 0, 0],
         ],
-        'goal': 5
+        'goal': 4
+    },
+    'hard': {
+        'blueprint': [
+            [-1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, -1, 0],
+            [0, 0, -1, -1, 0, -1],
+            [0, 0, 0, -1, 0, 0],
+            [0, 0, 0, 1, -1, 0],
+            [0, 0, 0, 0, 0, 0]
+        ],
+        'goal': 6
     }
 };
 
 app.controller('IndexController', function ($scope) {
-    var board = new Board(tileAbstractions.easy);
+    var board = new Board(tileAbstractions.hard);
     $scope.globalState = {
         'touchDownTileIsSelected': false
     };
