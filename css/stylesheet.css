@@ -40,7 +40,7 @@ button.span-all {
 
 #board {
     display: inline-block;
-    margin: 2.5%;
+    margin: 2.5px;
     background-color: #EEEDFF;
     padding: 5px;
     border: 1px solid grey;
@@ -78,9 +78,7 @@ table {
 
 .tile-filled:hover {
     border-style: solid;
-    border-width: 2.5px;
     border-color: white;
-    margin: .5px;
 }
 
 .bottom_button {
