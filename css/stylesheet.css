@@ -8,6 +8,7 @@ html {
 
 body {
     margin: 0;
+    background-color: #EEEDFF;
 }
 
 .text-center {
@@ -35,15 +36,15 @@ button.span-all {
 
 .tile-filled {
     background-color: #FFD873;
+    box-shadow: inset 0 0 6px #ccad5c;
 }
 
 .tile-empty {
     background-color: #DCDBFF;
+    box-shadow: inset 0 0 6px #b1b1bc;
 }
 
 .tile-negative {
-    background-color: #EEEDFF;
-    box-shadow: inset 0 0 10px #D5D4F8;
 }
 
 .tile-filled:hover {
