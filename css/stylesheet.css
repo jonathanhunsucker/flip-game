@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+}
+
+#board {
+    display: inline-block;
+    margin: 2.5%;
+    background-color: #EEEDFF;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.row {
+    width: 100%;
+    display: block;
+}
+
+.tile {
+    float: left;
+    display: block;
+    margin: 5px;
+    height: 80px;
+    width: 80px;
+    border-radius: 10px;
+}
+
+.filled {
+    background-color: #FFD873;
+}
+
+.empty {
+    background-color: #DCDBFF;
+}
+
+.negative {
+    background-image: url("img/negative_tile.svg");
+    background-size: contain;
+}
+
