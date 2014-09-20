@@ -194,8 +194,9 @@ var tileAbstractions = {
     }
 };
 
-app.controller('IndexController', function () {
-
+app.controller('IndexController', function ($scope) {
+    var board = new Board(tileAbstractions.easy);
+    $scope.board = board.grid;
 });
 
 var a = new Board(tileAbstractions.easy);

@@ -1,0 +1,7 @@
+<table>
+    <tbody>
+        <tr ng-repeat="(y, row) in board">
+            <td ng-repeat="(x, tile) in row" class="tile tile-{{ tile.state }}" ng-class="{'tile-selected': tile.isSelected}" ng-click="tile.toggleSelected()"></td>
+        </tr>
+    </tbody>
+</table>

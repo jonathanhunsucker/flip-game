@@ -1,3 +1,11 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 body {
     margin: 0;
 }
@@ -24,16 +32,20 @@ body {
     border-radius: 10px;
 }
 
-.filled {
+.tile-filled {
     background-color: #FFD873;
 }
 
-.empty {
+.tile-empty {
     background-color: #DCDBFF;
 }
 
-.negative {
+.tile-negative {
     background-image: url("img/negative_tile.svg");
     background-size: contain;
+}
+
+.tile-selected {
+    background-color: black;
 }
 
