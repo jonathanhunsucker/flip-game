@@ -13,7 +13,7 @@ html {
 
 body {
     margin: 15px;
-    background-color: #EEEDFF;
+    background-color: #EEEEEE;
 }
 
 .text-center {
@@ -60,6 +60,7 @@ table {
 .tile {
     -webkit-user-select: none;
     -moz-user-select: none;
+    border-radius: 3px;
 }
 
 .tile-filled {
@@ -87,12 +88,8 @@ table {
     bottom: -30px;
 }
 
-@media only screen and (min-width: 558px) {
+@media (min-width: 558px) {
     .tile {
-        float: left;
-        display: block;
-        border-radius: 3px;
-        margin: 2.5px;
         width: 60px;
         height: 60px;
     }
@@ -106,12 +103,8 @@ table {
     }
 }
 
-@media only screen and (min-width: 480px) and (max-width: 557px) {
+@media (min-width: 480px) and (max-width: 557px) {
     .tile {
-        float: left;
-        display: block;
-        border-radius: 3px;
-        margin: 2.5px;
         width: 50px;
         height: 50px;
     }
@@ -125,12 +118,8 @@ table {
     }
 }
 
-@media only screen and (min-width: 320px) and (max-width: 479px) {
+@media (min-width: 320px) and (max-width: 479px) {
     .tile {
-        float: left;
-        display: block;
-        border-radius: 3px;
-        margin: 2.5px;
         width: 30px;
         height: 30px;
     }
