@@ -12,7 +12,7 @@ app.config(function ($routeProvider) {
 function Tile(x, y, stateChar) {
     this.x = x || 0;
     this.y = y || 0;
-    this.state = this.getStateFromChar(stateChar) || 'empty';// enum('empty', 'filled', 'negative') aka 0, 1, -1
+    this.state = this.getStateFromChar(stateChar) || 'empty';
     this.isSelected = false;
 }
 Tile.prototype.getStateFromChar = function (stateChar) {
@@ -46,15 +46,19 @@ function Board(tileAbstraction) {
     if (!tileAbstraction) {
         throw new Error('asdf');
     }
-    this.tiles = this.generateTiles(tileAbstraction);
-    this.size = tileAbstraction.length;
+    this.tiles = this.generateTiles(tileAbstraction.map);
+    this.size = tileAbstraction.map.length;
+    this.turns = 0;
+    this.goal = tileAbstraction.goal;
+    this.original = tileAbstraction.map;
+    this.history = new Array(); //stack
 }
 Board.prototype.generateTiles = function (tiles) {
     var clonedTiles = new Array();
     for (var i = 0 ; i < tiles.length ; i++) {
         var row = tiles[i];
         for (var j = 0 ; j < row.length ; j++) {
-            clonedTiles.push(new Tile(i, j, row[j]));
+            clonedTiles.push(new Tile(j, i, row[j]));
         }
     }
     return clonedTiles;
@@ -123,13 +127,14 @@ Board.prototype.flip = function (direction) {
         // validate x and y bounds
         if (x < 0 || x > this.size ||
             y < 0 || y > this.size) {
-            console.log('dieing for tile for bounds');
+            console.log('dying for tile for bounds');
             return false;
         }
 
         // validate landing box
         var thisSillyTile = this.findTile(x, y);
         if (!thisSillyTile.isEmpty()) {
+            console.log('dying for dead tile flip');
             return false;
         }
 
@@ -145,13 +150,16 @@ Board.prototype.flip = function (direction) {
         var thisSillyTile = tilesThatShouldBeFilled[i];
         thisSillyTile.fill();
     }
+
+    this.turns++;
+    return true;
 }
 Board.prototype.select = function (x, y) {
     var tile = this.findTile(x, y);
     tile.select();
 }
 Board.prototype.toString = function () {
-    var str = '';
+    var str = '\n';
     for (var i = 0 ; i < this.size ; i++) {
         for (var j = 0 ; j < this.size ; j++) {
             var tile = this.findTile(j, i);
@@ -163,12 +171,15 @@ Board.prototype.toString = function () {
 }
 
 var tileAbstractions = {
-    'easy': [
-        [1, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-    ]
+    'easy': {
+        'map': [
+            [1, 0, 0, 0],
+            [0, 0, -1, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ],
+        'goal': 5
+    }
 };
 
 app.controller('IndexController', function () {
@@ -182,6 +193,12 @@ a.flip('down');
 console.log(a.toString());
 a.select(0,0);
 a.select(0,1);
+console.log(a.toString());
+a.flip('right');
+console.log(a.toString());
+a.select(0,1);
+a.select(1,0);
+a.select(1,1);
 console.log(a.toString());
 a.flip('right');
 console.log(a.toString());
