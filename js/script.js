@@ -20,11 +20,18 @@ Tile.prototype.getStateFromChar = function (stateChar) {
     if (stateChar == 1) return 'filled';
     if (stateChar == -1) return 'negative';
 }
+Tile.prototype.getStateChar = function () {
+    if (this.state == 'empty') return 0;
+    if (this.state == 'filled') return 1;
+    if (this.state == 'negative') return -1;
+}
 Tile.prototype.fill = function () {
     this.state = 'filled';
 }
 Tile.prototype.select = function () {
-    this.isSelected = true;
+    if (this.state == 'filled') {
+        this.isSelected = true;
+    }
 }
 Tile.prototype.unselect = function () {
     this.isSelected = false;
@@ -53,7 +60,6 @@ function Board(tileAbstraction) {
     this.size = tileAbstraction.map.length;
     this.turns = 0;
     this.goal = tileAbstraction.goal;
-    this.original = tileAbstraction.map;
     this.history = new Array(); //stack
     this.grid = new Array(this.size);
     for (var i = 0 ; i < this.grid.length ; i++) {
@@ -127,6 +133,7 @@ Board.prototype.flip = function (direction) {
 
     var bounds = this.getBoundsForTiles(selectedTiles);
 
+    var tilesBeforeFlip = this.cloneTiles(this.tiles);
     var tilesThatShouldBeFilled = [];
     for (var i = 0 ; i < selectedTiles.length ; i++) {
         var tile = selectedTiles[i];
@@ -163,7 +170,40 @@ Board.prototype.flip = function (direction) {
     }
 
     this.turns++;
+    this.addHistory(tilesBeforeFlip);
     return true;
+}
+Board.prototype.cloneTiles = function( tiles ) {
+    var clonedTiles = [];
+    for (var i = 0 ; i < this.tiles.length ; i++) {
+        var tile = this.tiles[i];
+        clonedTiles.push(new Tile(tile.x, tile.y, tile.getStateChar()));
+    }
+    return clonedTiles;
+}
+// make sure deep copy from current board
+Board.prototype.addHistory = function( tiles ) {
+    this.history.push(tiles);
+}
+Board.prototype.undo = function() {
+    if (this.history.length == 0) {
+        return;
+    }
+    this.tiles = this.history.pop();
+    this.grid = new Array(this.size);
+    for (var i = 0 ; i < this.grid.length ; i++) {
+        this.grid[i] = new Array(this.grid.length);
+    }
+    for (var i = 0 ; i < this.tiles.length ; i++) {
+        var tile = this.tiles[i];
+        this.grid[tile.y][tile.x] = tile;
+    }
+    this.turns--;
+}
+Board.prototype.restart = function() {
+    while(this.history.length > 0) {
+        this.undo();
+    }
 }
 Board.prototype.select = function (x, y) {
     var tile = this.findTile(x, y);
@@ -178,6 +218,7 @@ Board.prototype.toString = function () {
         }
         str += "\n";
     }
+    str += "turns: " + this.turns + "\n";
     return str;
 }
 
@@ -213,6 +254,15 @@ console.log(a.toString());
 a.select(0,1);
 a.select(1,0);
 a.select(1,1);
+console.log(a.toString());
+a.flip('right');
+console.log(a.toString());
+a.flip('down');
+console.log(a.toString());
+a.undo();
+console.log(a.toString());
+a.select(0,0);
+a.select(1,0);
 console.log(a.toString());
 a.flip('right');
 console.log(a.toString());
