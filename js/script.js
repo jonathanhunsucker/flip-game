@@ -59,7 +59,6 @@ function Board(tileAbstraction) {
     for (var i = 0 ; i < this.grid.length ; i++) {
         this.grid[i] = new Array(this.grid.length);
     }
-
     for (var i = 0 ; i < this.tiles.length ; i++) {
         var tile = this.tiles[i];
         this.grid[tile.y][tile.x] = tile;
@@ -67,10 +66,11 @@ function Board(tileAbstraction) {
 }
 Board.prototype.generateTiles = function (tiles) {
     var clonedTiles = new Array();
-    for (var i = 0 ; i < tiles.length ; i++) {
-        var row = tiles[i];
-        for (var j = 0 ; j < row.length ; j++) {
-            clonedTiles.push(new Tile(j, i, row[j]));
+    for (var j = 0 ; j < tiles.length ; j++) {
+        var row = tiles[j];
+        for (var i = 0 ; i < row.length ; i++) {
+            var stateChar = row[i];
+            clonedTiles.push(new Tile(i, j, stateChar));
         }
     }
     return clonedTiles;
