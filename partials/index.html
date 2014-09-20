@@ -2,8 +2,8 @@
   <img id="logo" src="img/logo.svg"/>
   <img id="menu" src="img/menu.svg"/>
 </div>
+
 <table>
-<<<<<<< Updated upstream
     <tbody>
         <tr>
             <td></td>
@@ -27,31 +27,6 @@
             <td class="text-center"><button class="span-all"  ng-click="board.flip('down')"><span class="arrow arrow-down"></span></button></td>
         </tr>
     </tbody>
-=======
-  <tbody>
-    <tr>
-      <td></td>
-      <td class="text-center"><button class="span-all" ng-click="board.flip('up')"><span class="arrow arrow-up"></span></button></td>
-    </tr>
-    <tr>
-      <td><button class="span-all" ng-click="board.flip('left')"><span class="arrow arrow-left"></span></button></td>
-      <td>
-        <table id="Board">
-          <tbody>
-            <tr ng-repeat="(y, row) in board.grid">
-              <td ng-repeat="(x, tile) in row" class="tile tile-{{ tile.state }}" ng-class="{'tile-selected': tile.isSelected}" ng-click="tile.toggleSelected()"></td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-      <td><button class="span-all"  ng-click="board.flip('right')"><span class="arrow arrow-right"></span></button></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td class="text-center"><button class="span-all"  ng-click="board.flip('down')"><span class="arrow arrow-down"></span></button></td>
-    </tr>
-  </tbody>
->>>>>>> Stashed changes
 </table>
 <button class="bottom_button" ng-click="board.restart()">Restart</button>
 <button class="bottom_button" ng-click="board.undo()">Undo move</button>
