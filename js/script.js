@@ -35,6 +35,9 @@ Tile.prototype.isEmpty = function () {
 Tile.prototype.isSelected = function () {
     return this.isSelected;
 }
+Tile.prototype.toggleSelected = function () {
+    this.isSelected = !this.isSelected;
+}
 Tile.prototype.toString = function () {
     if (this.isSelected) return 'ʘ';
     if (this.state == 'empty') return '-';
@@ -46,12 +49,22 @@ function Board(tileAbstraction) {
     if (!tileAbstraction) {
         throw new Error('asdf');
     }
+<<<<<<< HEAD
     this.tiles = this.generateTiles(tileAbstraction.map);
     this.size = tileAbstraction.map.length;
     this.turns = 0;
     this.goal = tileAbstraction.goal;
     this.original = tileAbstraction.map;
     this.history = new Array(); //stack
+    this.grid = new Array(this.size);
+    for (var i = 0 ; i < this.grid.length ; i++) {
+        this.grid[i] = new Array(this.grid.length);
+    }
+
+    for (var i = 0 ; i < this.tiles.length ; i++) {
+        var tile = this.tiles[i];
+        this.grid[tile.y][tile.x] = tile;
+    }
 }
 Board.prototype.generateTiles = function (tiles) {
     var clonedTiles = new Array();
@@ -74,15 +87,15 @@ Board.prototype.getSelectedTiles = function () {
     return selectedTiles;
 }
 Board.prototype.findTile = function (x, y) {
-    for (var i = 0 ; i < this.tiles.length ; i++) {
-        var tile = this.tiles[i];
-        if (tile.x === x && tile.y === y) {
-            return tile;
-        }
-    }
+    var tile = this.isWithinBounds(x, y) ? this.grid[y][x] : null;
+    return tile;
 }
 Board.prototype.directionIsValid = function (direction) {
     return ['down', 'up', 'right', 'left'].indexOf(direction) < 0;
+}
+Board.prototype.isWithinBounds = function (x, y) {
+    return x >= 0 || x < this.size ||
+           y >= 0 || y < this.size;
 }
 Board.prototype.getBoundsForTiles = function (tiles) {
     var xMinTile = tiles[0], xMaxTile = tiles[0], yMinTile = tiles[0], yMaxTile = tiles[0];
@@ -125,8 +138,7 @@ Board.prototype.flip = function (direction) {
         if (direction == 'left') x = bounds.xMin - ((tile.x - bounds.xMin) + 1);
 
         // validate x and y bounds
-        if (x < 0 || x > this.size ||
-            y < 0 || y > this.size) {
+        if (!this.isWithinBounds(x, y)) {
             console.log('dying for tile for bounds');
             return false;
         }
