@@ -10,6 +10,17 @@ body {
     margin: 0;
 }
 
+.text-center {
+    text-align: center;
+}
+
+button.span-all {
+    height: 100%;
+    width: 100%;
+    min-height: 2em;
+    min-width: 2em;
+}
+
 #board {
     display: inline-block;
     margin: 2.5%;
@@ -22,20 +33,20 @@ body {
     display: block;
 }
 
-.filled {
+.tile-filled {
     background-color: #FFD873;
 }
 
-.empty {
+.tile-empty {
     background-color: #DCDBFF;
 }
 
-.negative {
+.tile-negative {
     background-color: #EEEDFF;
     box-shadow: inset 0 0 10px #D5D4F8;
 }
 
-.filled:hover {
+.tile-filled:hover {
     border-style: solid;
     border-width: 2.5px;
     border-color: white;
@@ -77,4 +88,26 @@ body {
 
 .tile-selected {
     background-color: black;
+}
+
+.arrow:before {
+    display: inline-block;
+    content: "↪";
+    font-size: 2em;
+}
+
+.arrow.arrow-right:before {
+    transform: rotate(0deg);
+}
+
+.arrow.arrow-left:before {
+    transform: rotate(180deg);
+}
+
+.arrow.arrow-up:before {
+    transform: rotate(270deg);
+}
+
+.arrow.arrow-down:before {
+    transform: rotate(90deg);
 }

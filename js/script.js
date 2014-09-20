@@ -34,7 +34,9 @@ Tile.prototype.select = function () {
     }
 }
 Tile.prototype.unselect = function () {
-    this.isSelected = false;
+    if (this.state == 'filled') {
+        this.isSelected = false;
+    }
 }
 Tile.prototype.isEmpty = function () {
     return this.state == 'empty';
@@ -43,7 +45,9 @@ Tile.prototype.isSelected = function () {
     return this.isSelected;
 }
 Tile.prototype.toggleSelected = function () {
-    this.isSelected = !this.isSelected;
+    if (this.state == 'filled') {
+        this.isSelected = !this.isSelected;
+    }
 }
 Tile.prototype.toString = function () {
     if (this.isSelected) return 'ʘ';
@@ -56,6 +60,7 @@ function Board(tileAbstraction) {
     if (!tileAbstraction) {
         throw new Error('asdf');
     }
+    this.directions = ['down', 'up', 'right', 'left'];
     this.tiles = this.generateTiles(tileAbstraction.map);
     this.size = tileAbstraction.map.length;
     this.turns = 0;
@@ -96,7 +101,7 @@ Board.prototype.findTile = function (x, y) {
     return tile;
 }
 Board.prototype.directionIsValid = function (direction) {
-    return ['down', 'up', 'right', 'left'].indexOf(direction) < 0;
+    return this.directions.indexOf(direction) < 0;
 }
 Board.prototype.isWithinBounds = function (x, y) {
     return x >= 0 || x < this.size ||
@@ -151,7 +156,7 @@ Board.prototype.flip = function (direction) {
 
         // validate landing box
         var thisSillyTile = this.findTile(x, y);
-        if (!thisSillyTile.isEmpty()) {
+        if (!thisSillyTile || !thisSillyTile.isEmpty()) {
             console.log('dying for dead tile flip');
             return false;
         }
@@ -201,7 +206,7 @@ Board.prototype.undo = function() {
     this.turns--;
 }
 Board.prototype.restart = function() {
-    while(this.history.length > 0) {
+    while (this.history.length > 0) {
         this.undo();
     }
 }
@@ -236,7 +241,7 @@ var tileAbstractions = {
 
 app.controller('IndexController', function ($scope) {
     var board = new Board(tileAbstractions.easy);
-    $scope.board = board.grid;
+    $scope.board = board;
 });
 
 /*
