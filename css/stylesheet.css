@@ -5,6 +5,7 @@
 
 html {
     box-sizing: border-box;
+    background-color: #EEEEEE;
 }
 
 *, *:before, *:after {
@@ -12,8 +13,9 @@ html {
 }
 
 body {
-    margin: 15px;
-    background-color: #F9F9F9;
+    margin: 1rem auto;
+    padding: 0 1rem;
+    max-width: 50rem;
 }
 
 .text-center {
@@ -23,6 +25,8 @@ body {
 button.span-all {
     height: 100%;
     width: 100%;
+    background: none;
+    border: none;
     min-height: 2em;
     min-width: 2em;
 }
@@ -32,21 +36,37 @@ button.span-all {
     display: inline-block;
 }
 
+#text-logo {
+    font-size: 4em;
+    font-family: Londrina;
+    color: #aeaeff;
+    text-shadow: #dcdbff 0.03em 0.03em 0;
+}
+
+#text-logo .logo-highlight {
+    color: #FFD873;
+}
+
+/*
+ *
+    color: #eeeeff;
+    dcdbff;
+    aeaeff;
+    */
+
 #menu {
    float: right;
    position: relative;
-   top: 10px;
+   top: 1em;
 }
 
 #board {
     display: inline-block;
-    margin: 2.5px;
+    margin: 0.2em;
     background-color: #EEEDFF;
-    padding: 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #aeaeff;
-    border-radius: 5px;
+    padding: 0.3em;
+    border: 0.0625em solid #aeaeff;
+    border-radius: 0.3em;
 }
 
 table {
@@ -68,17 +88,19 @@ button {
 .tile {
     -webkit-user-select: none;
     -moz-user-select: none;
-    border-radius: 3px;
+    border-radius: 0.3em;
+    width: 1.5em;
+    height: 1.5em;
 }
 
 .tile-filled {
     background-color: #FFD873;
-    box-shadow: inset 0 0 8px #ccad5c;
+    box-shadow: inset 0 0 0.3em #ccad5c;
 }
 
 .tile-empty {
     background-color: #DCDBFF;
-    box-shadow: inset 0 0 8px #aeaeff;
+    box-shadow: inset 0 0 0.3em #b1b1bc;
 }
 
 .tile-negative {
@@ -89,36 +111,10 @@ button {
     border-color: #f9f9f9;
 }
 
-.bottom_button {
-    position: relative;
-    bottom: -30px;
-    background-color: #dcdbff;
-    border-style: solid;
-    border-color: #aeaeff;
-    border-width: 1px;
-    color: #f9f9f9;
-    font-size: 14px;
-}
-
-@media (min-width: 558px) {
+@media (min-width: 20em) {
     .tile {
-        width: 60px;
-        height: 60px;
-    }
-
-    #logo {
-        height: 80px;
-    }
-
-    #menu {
-        height: 50px;
-    }
-}
-
-@media (min-width: 480px) and (max-width: 557px) {
-    .tile {
-        width: 50px;
-        height: 50px;
+        width: 1.8em;
+        height: 1.8em;
     }
 
     #logo {
@@ -130,10 +126,17 @@ button {
     }
 }
 
-@media (min-width: 320px) and (max-width: 479px) {
+@media (min-width: 22em) {
     .tile {
-        width: 30px;
-        height: 30px;
+        width: 2em;
+        height: 2em;
+    }
+}
+
+@media (min-width: 30em) {
+    .tile {
+        width: 3em;
+        height: 3em;
     }
 
     #logo {
@@ -155,21 +158,25 @@ button {
 .arrow:before {
     display: inline-block;
     content: url("../img/button.svg");
-    font-size: 2em;
+    width: 1.5em;
 }
 
 .arrow.arrow-right:before {
     transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
 }
 
 .arrow.arrow-left:before {
     transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
 }
 
 .arrow.arrow-up:before {
     transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
 }
 
 .arrow.arrow-down:before {
     transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
 }

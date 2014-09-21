@@ -1,7 +1,3 @@
-<div id="header"> 
-  <img id="logo" src="img/logo.svg"/>
-  <img id="menu" src="img/menu.svg"/>
-</div>
 <table>
     <tbody>
         <tr>
@@ -19,14 +15,16 @@
                     </tbody>
                 </table>
             </td>
-            <td><button class="span-all"  ng-click="board.flip('right')"><span class="arrow arrow-right"></span></button></td>
+            <td><button class="span-all" ng-click="board.flip('right')"><span class="arrow arrow-right"></span></button></td>
         </tr>
         <tr>
             <td></td>
-            <td class="text-center"><button class="span-all"  ng-click="board.flip('down')"><span class="arrow arrow-down"></span></button></td>
+            <td class="text-center"><button class="span-all" ng-click="board.flip('down')"><span class="arrow arrow-down"></span></button></td>
         </tr>
     </tbody>
 </table>
-<button class="bottom_button" ng-click="board.restart()">Restart</button>
-<button class="bottom_button" ng-click="board.undo()">Undo move</button>
-<button class="bottom_button" ng-click="board.unselectAll()">Unselect All</button>
+<p>
+    <button ng-click="board.restart()">Restart</button>
+    <button ng-click="board.undo()">Undo move</button>
+    <button ng-click="board.unselectAll()">Unselect All</button>
+</p>
