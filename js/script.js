@@ -1,5 +1,16 @@
 'use strict';
 
+var KeyCodes = {
+    LEFT_ARROW : 37,
+    UP_ARROW : 38,
+    RIGHT_ARROW : 39,
+    DOWN_ARROW : 40,
+    W_KEY : 87,
+    A_KEY : 65,
+    S_KEY : 83,
+    D_KEY : 68,
+    R_KEY : 82,
+};
 
 var app = angular.module('flip', ['ngRoute']);
 
@@ -278,6 +289,21 @@ Board.prototype.flip = function (direction) {
     this.addHistory(tilesBeforeFlip);
     return true;
 }
+Board.prototype.onKeyEvent = function (event) {
+    var k = event.keyCode;
+
+    if (k == KeyCodes.UP_ARROW || k == KeyCodes.W_KEY) {
+        this.flip('up');
+    } else if (k == KeyCodes.RIGHT_ARROW || k == KeyCodes.D_KEY) {
+        this.flip('right');
+    } else if (k == KeyCodes.DOWN_ARROW || k == KeyCodes.S_KEY) {
+        this.flip('down');
+    } else if (k == KeyCodes.LEFT_ARROW || k == KeyCodes.A_KEY) {
+        this.flip('left');
+    } else if (k == KeyCodes.R_KEY) {
+        this.restart();
+    }
+}
 Board.prototype.cloneTiles = function( tiles ) {
     var clonedTiles = [];
     for (var i = 0 ; i < this.tiles.length ; i++) {
@@ -379,6 +405,11 @@ app.controller('IndexController', function ($scope) {
         'touchDownTileIsSelected': false
     };
     $scope.board = board;
+    angular.element(document).bind('keydown', function (event) {
+        $scope.$apply(function () {
+            board.onKeyEvent(event);
+        });
+    });
 });
 
 /*
