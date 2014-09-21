@@ -155,6 +155,13 @@ table {
     }
 }
 
+@media (min-width: 48em) {
+    .tile {
+        width: 5em;
+        height: 5em;
+    }
+}
+
 .arrow:before {
     display: inline-block;
     content: url("../img/button.svg");
