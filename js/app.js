@@ -37,47 +37,101 @@ app.directive('flClickdrag', function () {
     };
 });
 
-
-var tileAbstractions = {
-    'supereasy': {
-        'blueprint': [
-            [1, 0],
-            [0, 0],
-        ],
-        'goal': 2
-    },
-    'easy': {
-        'blueprint': [
-            [1, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-        ],
-        'goal': 4
-    },
-    'medium': {
-        'blueprint': [
-            [0, 0, 0, 0, 0, 0],
-            [0, -1, 0, 0, -1, -1],
-            [0, -1, 0, 0, 0, 0],
-            [0, 0, 1, 0, -1, 0],
-            [0, -1, 0, 0, -1, 0],
-            [0, 0, 0, 0, 0, 0],
-        ],
-        'goal': 6
-    },
-    'hard': {
-        'blueprint': [
-            [-1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, -1, 0],
-            [0, 0, -1, -1, 0, -1],
-            [0, 0, 0, -1, 0, 0],
-            [0, 0, 0, 1, -1, 0],
-            [0, 0, 0, 0, 0, 0]
-        ],
-        'goal': 6
+app.service('Boards', function ($q, $http) {
+    var abstracts = {
+        'beginner': [{
+            'blueprint': [
+                [1, 0],
+                [0, 0],
+            ],
+            'goal': 2
+        }],
+        'easy': [{
+            'blueprint': [
+                [1, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+            ],
+            'goal': 4
+        }, {
+            'blueprint': [
+                [0, -1, 0, 0],
+                [0, 0, 1, 0],
+                [-1, 0, 0, -1],
+                [0, 0, 0, 0],
+            ],
+            'goal': 4
+        }, {
+            'blueprint': [
+                [1, 0, 0, 0],
+                [0, 0, 0, 0],
+                [-1, 0, 0, 0],
+                [0, 0, 0, 0],
+            ],
+            'goal': 4
+        }, {
+            'blueprint': [
+                [1, 0, 0, 0],
+                [0, 0, -1, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+            ],
+            'goal': 4
+        }],
+        'medium': [{
+            'blueprint': [
+                [0, 0, 0, 0, 0, 0],
+                [0, -1, 0, 0, -1, -1],
+                [0, -1, 0, 0, 0, 0],
+                [0, 0, 1, 0, -1, 0],
+                [0, -1, 0, 0, -1, 0],
+                [0, 0, 0, 0, 0, 0],
+            ],
+            'goal': 6
+        }, {
+            'blueprint': [
+                [1, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0],
+            ],
+            'goal': 6
+        }],
+        'hard': [{
+            'blueprint': [
+                [-1, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, -1, 0],
+                [0, 0, -1, -1, 0, -1],
+                [0, 0, 0, -1, 0, 0],
+                [0, 0, 0, 1, -1, 0],
+                [0, 0, 0, 0, 0, 0]
+            ],
+            'goal': 6
+        }],
+        'loading': [{
+            'blueprint': [
+                [0, 0],
+                [0, 0]
+            ],
+            'goal': '?'
+        }]
+    };
+    function Boards() {}
+    Boards.prototype.getA = function (type) {
+        var deferred = $q.defer();
+        var options = abstracts[type];
+        var item = options[parseInt(Math.random()*options.length)];
+        deferred.resolve(new Board(item));
+        return deferred.promise;
     }
-};
+    Boards.prototype.getLoadingBoard = function () {
+        return new Board(abstracts['loading'][0]);
+    }
+    return new Boards();
+});
 
 app.controller('HeaderController', function ($scope) {
     $scope.navigation = {
@@ -95,17 +149,27 @@ app.controller('HeaderController', function ($scope) {
     };
 });
 
-app.controller('IndexController', function ($scope) {
-    var board = new Board(tileAbstractions.medium);
+app.controller('IndexController', function ($scope, Boards) {
     $scope.globalState = {
         'touchDownTileIsSelected': false
     };
-    $scope.board = board;
+
+    setBoard(Boards.getLoadingBoard());
+
+    Boards.getA('medium').then(function (board) {
+        setBoard(board);
+    });
+
     angular.element(document).bind('keydown', function (event) {
         $scope.$apply(function () {
-            board.onKeyEvent(event);
+            $scope.board.onKeyEvent(event);
         });
     });
+
+    function setBoard(board) {
+        $scope.boardIsLoading = false;
+        $scope.board = board;
+    }
 });
 
 /*
