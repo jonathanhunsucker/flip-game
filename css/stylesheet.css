@@ -107,8 +107,24 @@ button.span-all:hover {
 #aeaeff
 */
 
+
 #menu {
    margin-top: 1.5em;
+}
+
+#moves {
+    position: absolute;
+    font-family: Londrina;
+    font-size: 3em;
+    text-shadow: #aeaeff 0.03em 0.03em 0;
+}
+
+#current-moves {
+    color: #dcdbff;
+}
+
+#goal {
+    color: #ffd873;
 }
 
 #game-controls {
@@ -175,7 +191,7 @@ table {
     }
 
     #menu {
-        height: 40px;
+        height: 2em;
     }
 }
 
@@ -193,7 +209,7 @@ table {
     }
 
     #menu {
-        height: 2em;
+        height: 2.5em;
     }
 }
 
