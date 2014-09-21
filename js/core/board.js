@@ -183,7 +183,7 @@ Board.prototype.flip = function (direction) {
     this.addHistory(tilesBeforeFlip);
     var filled = this.tiles.filter(function (tile) {return tile.state == 'filled';});
     var possible = this.tiles.filter(function (tile) {return tile.state != 'negative';});
-    this.solved = filled.length == possible.length;
+    this.solved = (filled.length == possible.length) && (this.turns <= this.goal);
     return true;
 }
 Board.prototype.onKeyEvent = function (event) {
