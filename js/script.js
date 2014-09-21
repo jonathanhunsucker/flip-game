@@ -286,6 +286,11 @@ Board.prototype.cloneTiles = function( tiles ) {
     }
     return clonedTiles;
 }
+Board.prototype.unselectAll = function() {
+    for (var i = 0 ; i < this.tiles.length ; i++) {
+        this.tiles[i].unselect();
+    }
+}
 // make sure deep copy from current board
 Board.prototype.addHistory = function( tiles ) {
     this.history.push(tiles);
