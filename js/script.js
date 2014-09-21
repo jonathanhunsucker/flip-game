@@ -1,5 +1,6 @@
 'use strict';
 
+
 var app = angular.module('flip', ['ngRoute']);
 
 app.config(function ($routeProvider) {
@@ -36,7 +37,8 @@ angular.element(document).bind('mouseup', function () {
     mouseIsDown = false;
 });
 
-function Tile(x, y, stateChar) {
+function Tile(board, x, y, stateChar) {
+    this.board = board;
     this.x = x || 0;
     this.y = y || 0;
     this.state = this.getStateFromChar(stateChar) || 'empty';
@@ -57,7 +59,31 @@ Tile.prototype.fill = function () {
 }
 Tile.prototype.select = function () {
     if (this.state == 'filled') {
-        this.isSelected = true;
+        var board = this.board;
+        if (board.getSelectedTiles().length == 0) {
+            this.isSelected = true;
+        } else {
+            var x = this.x;
+            var y = this.y;
+
+            var adjacentSelected = 0;
+            if (x > 0 && board.grid[y][x-1].isSelected) {
+                adjacentSelected++;
+            }
+            if (y > 0 && board.grid[y-1][x].isSelected) {
+                adjacentSelected++;
+            }
+            if (x < board.size-1 && board.grid[y][x+1].isSelected) {
+                adjacentSelected++;
+            }
+            if (y < board.size-1 && board.grid[y+1][x].isSelected) {
+                adjacentSelected++;
+            }
+
+            if (adjacentSelected >= 1) {
+                this.isSelected = true;
+            }
+        }
     }
 }
 Tile.prototype.unselect = function () {
@@ -68,12 +94,13 @@ Tile.prototype.unselect = function () {
 Tile.prototype.isEmpty = function () {
     return this.state == 'empty';
 }
-Tile.prototype.isSelected = function () {
-    return this.isSelected;
-}
 Tile.prototype.toggleSelected = function () {
     if (this.state == 'filled') {
-        this.isSelected = !this.isSelected;
+        if (this.isSelected) {
+            this.unselect();
+        } else {
+            this.select();
+        }
     }
 }
 Tile.prototype.toString = function () {
@@ -108,7 +135,7 @@ Board.prototype.generateTiles = function (tiles) {
         var row = tiles[j];
         for (var i = 0 ; i < row.length ; i++) {
             var stateChar = row[i];
-            clonedTiles.push(new Tile(i, j, stateChar));
+            clonedTiles.push(new Tile(this, i, j, stateChar));
         }
     }
     return clonedTiles;
@@ -131,8 +158,8 @@ Board.prototype.directionIsValid = function (direction) {
     return this.directions.indexOf(direction) < 0;
 }
 Board.prototype.isWithinBounds = function (x, y) {
-    return x >= 0 || x < this.size ||
-           y >= 0 || y < this.size;
+    return x >= 0 && x < this.size &&
+           y >= 0 && y < this.size;
 }
 Board.prototype.getBoundsForTiles = function (tiles) {
     var xMinTile = tiles[0], xMaxTile = tiles[0], yMinTile = tiles[0], yMaxTile = tiles[0];
@@ -191,6 +218,52 @@ Board.prototype.flip = function (direction) {
         tilesThatShouldBeFilled.push(thisSillyTile);
     }
 
+    if (selectedTiles.length > 1) {
+        var blobSize = 0;
+        var queue = new Array();
+        var visited = new Array();
+        queue.push(selectedTiles[0]);
+        visited.push(selectedTiles[0]);
+
+        while (queue.length > 0) {
+            var tile = queue.shift();
+            var x = tile.x;
+            var y = tile.y;
+
+            if (x > 0 && this.grid[y][x-1].isSelected) {
+                var newTile = this.grid[y][x-1];
+                if (visited.indexOf(newTile) == -1) {
+                    queue.push(newTile);
+                }
+            }
+            if (y > 0 && this.grid[y-1][x].isSelected) {
+                var newTile = this.grid[y-1][x];
+                if (visited.indexOf(newTile) == -1) {
+                    queue.push(newTile);
+                }
+            }
+            if (x < this.size-1 && this.grid[y][x+1].isSelected) {
+                var newTile = this.grid[y][x+1];
+                if (visited.indexOf(newTile) == -1) {
+                    queue.push(newTile);
+                }
+            }
+            if (y < this.size-1 && this.grid[y+1][x].isSelected) {
+                var newTile = this.grid[y+1][x];
+                if (visited.indexOf(newTile) == -1) {
+                    queue.push(newTile);
+                }
+            }
+
+            visited.push(tile);
+            blobSize++;
+        }
+        if (blobSize < selectedTiles.length) {
+            console.log('disjoint group. cannot flip.');
+            return false;
+        }
+    }
+
     for (var i = 0 ; i < selectedTiles.length ; i++) {
         var selected = selectedTiles[i];
         selected.unselect();
@@ -209,7 +282,7 @@ Board.prototype.cloneTiles = function( tiles ) {
     var clonedTiles = [];
     for (var i = 0 ; i < this.tiles.length ; i++) {
         var tile = this.tiles[i];
-        clonedTiles.push(new Tile(tile.x, tile.y, tile.getStateChar()));
+        clonedTiles.push(new Tile(this, tile.x, tile.y, tile.getStateChar()));
     }
     return clonedTiles;
 }
