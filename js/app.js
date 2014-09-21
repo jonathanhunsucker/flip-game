@@ -146,7 +146,7 @@ app.service('Boards', function ($q, $http) {
             [1 0, 0, 0],
         ],
         'goal': 5,
-        'difficulty': 1
+        'difficulty': 2
     }, {
         'blueprint': [
             [0, 0, 0, 0],
@@ -165,7 +165,7 @@ app.service('Boards', function ($q, $http) {
             [0, 0, -1, 0],
         ],
         'goal': 5,
-        'difficulty': 1
+        'difficulty': 2
     }, {
         'blueprint': [
             [0, 0, 0, 1],
@@ -184,7 +184,7 @@ app.service('Boards', function ($q, $http) {
             [0, 0, 0, 1],
         ],
         'goal': 5,
-        'difficulty': 1
+        'difficulty': 2
     }, {
         'blueprint': [
             [0, 0, 0, 0],
@@ -193,16 +193,16 @@ app.service('Boards', function ($q, $http) {
             [-1, 0, 0, 0],
         ],
         'goal': 6,
-        'difficulty': 1
+        'difficulty': 2
     }, {
         'blueprint': [
-            [0, 0, -1, ],
+            [0, 0, -1, 0],
             [0, -1, -1, 0],
             [0, 0, 0, 0],
             [0, 0, 1, -1],
         ],
         'goal': 5,
-        'difficulty': 1
+        'difficulty': 2
     }, {
         'blueprint': [
             [0, 0, 0, 0],
