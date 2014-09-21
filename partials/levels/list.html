@@ -1,0 +1,9 @@
+<div ng-repeat="(difficulty, level) in levels">
+    <h3>{{ difficultyNames[difficulty] }}</h3>
+    <div class="clearfix">
+        <div class="pull-left" ng-repeat="board in level" ng-click="play(board)">
+            <div board object="board"></div>
+            <button>Play</button>
+        </div>
+    </div>
+</div>

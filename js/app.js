@@ -6,6 +6,9 @@ app.config(function ($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'partials/index.html',
         controller: 'IndexController'
+    }).when('/levels', {
+        templateUrl: 'partials/levels/list.html',
+        controller: 'LevelsController'
     }).when('/levels/create', {
         templateUrl: 'partials/levels/create.html',
         controller: 'LevelsCreateController'
@@ -40,98 +43,127 @@ app.directive('flClickdrag', function () {
     };
 });
 
+app.directive('board', function () {
+    return {
+        retrict: 'A',
+        templateUrl: 'partials/directives/board.html',
+        link: function (scope, element, attrs) {
+            console.log('I was called');
+        }
+    }
+});
+
 app.service('Boards', function ($q, $http) {
-    var abstracts = {
-        'beginner': [{
-            'blueprint': [
-                [1, 0],
-                [0, 0],
-            ],
-            'goal': 2
-        }],
-        'easy': [{
-            'blueprint': [
-                [1, 0, 0, 0],
-                [0, 0, 0, 0],
-                [0, 0, 0, 0],
-                [0, 0, 0, 0],
-            ],
-            'goal': 4
-        }, {
-            'blueprint': [
-                [0, -1, 0, 0],
-                [0, 0, 1, 0],
-                [-1, 0, 0, -1],
-                [0, 0, 0, 0],
-            ],
-            'goal': 4
-        }, {
-            'blueprint': [
-                [1, 0, 0, 0],
-                [0, 0, 0, 0],
-                [-1, 0, 0, 0],
-                [0, 0, 0, 0],
-            ],
-            'goal': 4
-        }, {
-            'blueprint': [
-                [1, 0, 0, 0],
-                [0, 0, -1, 0],
-                [0, 0, 0, 0],
-                [0, 0, 0, 0],
-            ],
-            'goal': 4
-        }],
-        'medium': [{
-            'blueprint': [
-                [0, 0, 0, 0, 0, 0],
-                [0, -1, 0, 0, -1, -1],
-                [0, -1, 0, 0, 0, 0],
-                [0, 0, 1, 0, -1, 0],
-                [0, -1, 0, 0, -1, 0],
-                [0, 0, 0, 0, 0, 0],
-            ],
-            'goal': 6
-        }, {
-            'blueprint': [
-                [1, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0],
-            ],
-            'goal': 6
-        }],
-        'hard': [{
-            'blueprint': [
-                [-1, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, -1, 0],
-                [0, 0, -1, -1, 0, -1],
-                [0, 0, 0, -1, 0, 0],
-                [0, 0, 0, 1, -1, 0],
-                [0, 0, 0, 0, 0, 0]
-            ],
-            'goal': 6
-        }],
-        'loading': [{
+    var abstracts = [{
+        'blueprint': [
+            [1, 0],
+            [0, 0],
+        ],
+        'goal': 2,
+        'difficulty': 0
+    }, {
+        'blueprint': [
+            [1, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ],
+        'goal': 4,
+        'difficulty': 1
+    }, {
+        'blueprint': [
+            [0, -1, 0, 0],
+            [0, 0, 1, 0],
+            [-1, 0, 0, -1],
+            [0, 0, 0, 0],
+        ],
+        'goal': 4,
+        'difficulty': 1
+    }, {
+        'blueprint': [
+            [1, 0, 0, 0],
+            [0, 0, 0, 0],
+            [-1, 0, 0, 0],
+            [0, 0, 0, 0],
+        ],
+        'goal': 4,
+        'difficulty': 1
+    }, {
+        'blueprint': [
+            [1, 0, 0, 0],
+            [0, 0, -1, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ],
+        'goal': 4,
+        'difficulty': 1
+    }, {
+        'blueprint': [
+            [0, 0, 0, 0, 0, 0],
+            [0, -1, 0, 0, -1, -1],
+            [0, -1, 0, 0, 0, 0],
+            [0, 0, 1, 0, -1, 0],
+            [0, -1, 0, 0, -1, 0],
+            [0, 0, 0, 0, 0, 0],
+        ],
+        'goal': 6,
+        'difficulty': 2
+    }, {
+        'blueprint': [
+            [1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+        ],
+        'goal': 6,
+        'difficulty': 2
+    }, {
+        'blueprint': [
+            [-1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, -1, 0],
+            [0, 0, -1, -1, 0, -1],
+            [0, 0, 0, -1, 0, 0],
+            [0, 0, 0, 1, -1, 0],
+            [0, 0, 0, 0, 0, 0]
+        ],
+        'goal': 6,
+        'difficulty': 3
+    }];
+    var typeToInt = {
+        'beginner':  0,
+        'easy':  1,
+        'medium':  2,
+        'hard':  3,
+    };
+    function Boards() {}
+    Boards.prototype.getA = function (type) {
+        var deferred = $q.defer();
+        var intDifficultyLevel = typeToInt[type];
+        var typedBoards = abstracts.filter(function (abs) {
+            return abs.difficulty > intDifficultyLevel;
+        });
+        var item = typedBoards[parseInt(Math.random()*typedBoards.length)];
+        deferred.resolve(new Board(item));
+        return deferred.promise;
+    }
+    Boards.prototype.getLoadingBoard = function () {
+        return new Board({
             'blueprint': [
                 [0, 0],
                 [0, 0]
             ],
             'goal': '?'
-        }]
-    };
-    function Boards() {}
-    Boards.prototype.getA = function (type) {
-        var deferred = $q.defer();
-        var options = abstracts[type];
-        var item = options[parseInt(Math.random()*options.length)];
-        deferred.resolve(new Board(item));
-        return deferred.promise;
+        });
     }
-    Boards.prototype.getLoadingBoard = function () {
-        return new Board(abstracts['loading'][0]);
+    Boards.prototype.getAll = function () {
+        var boards = abstracts.map(function (abs) {
+            return new Board(abs);
+        });
+        var deferred = $q.defer();
+        deferred.resolve(boards);
+        return deferred.promise;
     }
     return new Boards();
 });
@@ -179,6 +211,34 @@ app.controller('IndexController', function ($scope, Boards) {
 });
 
 app.controller('LevelsCreateController', function ($scope) {
+});
+
+app.controller('LevelsController', function ($scope, Boards) {
+    $scope.levels = [];
+
+    $scope.difficultyNames = {
+        0: 'Beginner',
+        1: 'Easy',
+        2: 'Medium',
+        3: 'Difficult'
+    };
+
+    var boards = Boards.getAll().then(function (boards) {
+        var levels = [];
+        for (var i = 0 ; i < boards.length ; i++) {
+            var board = boards[i];
+            if (!levels.hasOwnProperty(board.difficulty)) {
+                levels[board.difficulty] = [];
+            }
+            levels[board.difficulty].push(board);
+        }
+
+        $scope.levels = levels;
+    });
+
+    $scope.play = function () {
+        ;
+    };
 });
 
 /*

@@ -1,5 +1,5 @@
 <div id="moves"><span id="current-moves">{{ board.turns }}</span><span id="goal">/{{ board.goal }}</span></div>
-<table>
+<table class="margin-center">
     <tbody>
         <tr>
             <td></td>
@@ -8,7 +8,7 @@
         <tr>
             <td><button class="span-all" ng-click="board.flip('left')"><span class="arrow arrow-left"></span></button></td>
             <td>
-                <table id="Board">
+                <table class="board">
                     <tbody>
                         <tr ng-repeat="(y, row) in board.grid">
                             <td ng-repeat="(x, tile) in row" class="tile tile-{{ tile.state }}" ng-class="{'tile-selected': tile.isSelected}" ng-mousedown="globalState.touchDownTileIsSelected = tile.isSelected" fl-clickdrag="(globalState.touchDownTileIsSelected ? tile.unselect() : tile.select())"></td>

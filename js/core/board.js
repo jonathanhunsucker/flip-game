@@ -21,6 +21,7 @@ function Board(tileAbstraction) {
     this.size = tileAbstraction.blueprint.length;
     this.turns = 0;
     this.goal = tileAbstraction.goal;
+    this.difficulty = tileAbstraction.difficulty;
     this.history = new Array(); //stack
     this.grid = new Array(this.size);
     for (var i = 0 ; i < this.grid.length ; i++) {

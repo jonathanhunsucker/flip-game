@@ -26,6 +26,11 @@ body {
     text-align: center;
 }
 
+.margin-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* http://nicolasgallagher.com/micro-clearfix-hack/ */
 .clearfix:before, .clearfix:after {
     content: " ";
@@ -149,8 +154,7 @@ button.btn-ninja {
     text-align: center;
 }
 
-#board {
-    display: inline-block;
+.board {
     margin: 0.2em;
     background-color: #EEEDFF;
     padding: 0.3em;
@@ -158,9 +162,8 @@ button.btn-ninja {
     border-radius: 0.3em;
 }
 
-table {
-    margin-left: auto;
-    margin-right: auto;
+.board.board-small {
+    font-size: 0.25em;
 }
 
 .row {
