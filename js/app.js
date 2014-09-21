@@ -93,6 +93,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 4,
         'difficulty': 1
     }, {
+        'id': 3,
         'blueprint': [
             [0, 1, 0, 0],
             [0, 0, 0, 0],
@@ -102,6 +103,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 4,
         'difficulty': 1
     }, {
+        'id': 4,
         'blueprint': [
             [0, 0, 0, 0],
             [0, -1, 0, 0],
@@ -111,6 +113,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 4,
         'difficulty': 1
     }, {
+        'id': 5,
         'blueprint': [
             [0, 0, 0, 0],
             [0, 0, -1, 0],
@@ -120,6 +123,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 4,
         'difficulty': 1
     }, {
+        'id': 6,
         'blueprint': [
             [0, -1, 0, 0],
             [0, 0, 0, 1],
@@ -129,6 +133,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 4,
         'difficulty': 1
     }, {
+        'id': 7,
         'blueprint': [
             [0, -1, 0, 0],
             [0, 0, 1, 0],
@@ -138,16 +143,17 @@ app.service('Boards', function ($q, $http) {
         'goal': 4,
         'difficulty': 1
     }, {
-        'id': 3,
+        'id': 8,
         'blueprint': [
             [0, 0, 0, 0],
             [0, -1, 0, 0],
             [0, -1, 0, 0],
-            [1 0, 0, 0],
+            [1, 0, 0, 0],
         ],
         'goal': 5,
         'difficulty': 2
     }, {
+        'id': 9,
         'blueprint': [
             [0, 0, 0, 0],
             [-1, -1, 0, -1],
@@ -157,7 +163,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 4,
         'difficulty': 1
     }, {
-        'id': 4,
+        'id': 10,
         'blueprint': [
             [-1, 0, -1, 0],
             [1, 0, 0, 0],
@@ -167,6 +173,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 5,
         'difficulty': 2
     }, {
+        'id': 11,
         'blueprint': [
             [0, 0, 0, 1],
             [0, -1, -1, 0],
@@ -176,7 +183,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 4,
         'difficulty': 1
     }, {
-        'id': 5,
+        'id': 12,
         'blueprint': [
             [0, -1, -1, 0],
             [0, 0, -1, 0],
@@ -186,6 +193,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 5,
         'difficulty': 2
     }, {
+        'id': 13,
         'blueprint': [
             [0, 0, 0, 0],
             [1, 0, -1, 0],
@@ -195,6 +203,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 6,
         'difficulty': 2
     }, {
+        'id': 14,
         'blueprint': [
             [0, 0, -1, 0],
             [0, -1, -1, 0],
@@ -204,6 +213,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 5,
         'difficulty': 2
     }, {
+        'id': 15,
         'blueprint': [
             [0, 0, 0, 0],
             [0, -1, 0, 0],
@@ -213,6 +223,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 5,
         'difficulty': 1
     }, {
+        'id': 16,
         'blueprint': [
             [0, -1, 0, 0],
             [0, 0, 1, 0],
@@ -222,6 +233,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 5,
         'difficulty': 1
     }, {
+        'id': 17,
         'blueprint': [
             [0, 0, 0, 0],
             [0, -1, -1, 0],
@@ -231,30 +243,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 4,
         'difficulty': 1
     }, {
-        'id': 6,
-        'blueprint': [
-            [1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-        ],
-        'goal': 6,
-        'difficulty': 2
-    }, {
-        'id': 7,
-        'blueprint': [
-            [0, 0, 0, 0, 0, 0],
-            [0, -1, 0, 0, -1, -1],
-            [0, -1, 0, 0, 0, 0],
-            [0, 0, 1, 0, -1, 0],
-            [0, -1, 0, 0, -1, 0],
-            [0, 0, 0, 0, 0, 0],
-        ],
-        'goal': 6,
-        'difficulty': 3
-    }, {
+        'id': 18,
         'blueprint': [
             [-1, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, -1, 0],
@@ -262,6 +251,18 @@ app.service('Boards', function ($q, $http) {
             [0, 0, 0, -1, 0, 0],
             [0, 0, 0, 1, -1, 0],
             [0, 0, 0, 0, 0, 0]
+        ],
+        'goal': 6,
+        'difficulty': 2
+    }, {
+        'id': 19,
+        'blueprint': [
+            [0, 0, 0, 0, 0, 0],
+            [0, -1, 0, 0, -1, -1],
+            [0, -1, 0, 0, 0, 0],
+            [0, 0, 1, 0, -1, 0],
+            [0, -1, 0, 0, -1, 0],
+            [0, 0, 0, 0, 0, 0],
         ],
         'goal': 6,
         'difficulty': 3
