@@ -3,7 +3,7 @@
 var level2 = {
     'tutorial': {
         'map': [
-            [1, 0],
+            [0, 0],
             [0, 0],
         ],
         'goal': 2
@@ -13,7 +13,7 @@ var level2 = {
 var level4 = {
     'easy': {
         'map': [
-            [1, 0, 0, 0],
+            [0, 0, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
             [0, 0, 0, 0],
@@ -22,7 +22,7 @@ var level4 = {
     }
 };
 
-var level4 = {
+var level41 = {
     'easy': {
         'map': [
             [1, 0, 0, 0],
@@ -34,7 +34,7 @@ var level4 = {
     }
 };
 
-var level4 = {
+var level42 = {
     'easy': {
         'map': [
             [1, 0, 0, 0],
@@ -46,7 +46,7 @@ var level4 = {
     }
 };
 
-var level4 = {
+var level43 = {
     'easy': {
         'map': [
             [0, -1, 0, 0],
@@ -61,7 +61,7 @@ var level4 = {
 var level6 = {
     'medium': {
         'map': [
-            [1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
