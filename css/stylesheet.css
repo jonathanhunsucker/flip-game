@@ -69,6 +69,11 @@ button.span-all {
    top: 1em;
 }
 
+#game-controls {
+    text-align: center;
+    margin: auto;
+}
+
 #board {
     display: inline-block;
     margin: 0.2em;
