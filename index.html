@@ -24,6 +24,8 @@
             <li ng-repeat="page in navigation.pages" ng-click="navigation.open = false"><a href="#{{ page.url }}">{{ page.title }}</a></li>
         </ul>
     </div>
-    <ng-view></ng-view>
+    <div class="position-relative">
+        <ng-view></ng-view>
+    </div>
 </body>
 </html>

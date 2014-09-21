@@ -58,6 +58,16 @@ h3 {
     display: none;
 }
 
+.position-relative {
+    position: relative;
+}
+
+.abs-top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 button, a.btn {
     background-color: #aeaeff;
     border: #dcdbff solid 0.0625em;
