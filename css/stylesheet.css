@@ -63,6 +63,11 @@ button {
     font-family: "Sinkin Sans";
 }
 
+button:hover {
+    background-color: #ffb97b;
+    border:  #dea16b solid 0.0625em;
+ }
+
 button.span-all {
     height: 100%;
     width: 100%;
@@ -263,4 +268,13 @@ button.btn-ninja {
 .arrow.arrow-down:before {
     transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
+}
+
+h3 {
+    font-family: Sinkin Sans;
+    color: #AEAEFF;
+}
+
+.pull-left {
+    margin: .5em;
 }
