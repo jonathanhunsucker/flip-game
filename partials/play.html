@@ -1,4 +1,6 @@
-<div id="moves" class="abs-top-left"><span id="current-moves">{{ board.turns }}</span><span id="goal">/{{ board.goal }}</span></div>
+<div id="moves" class="abs-top-left">
+    <span class="{{ !board.solved ? 'text-periwinkle' : 'text-green' }}">{{ board.turns }}</span><span class="{{ !board.solved ? 'text-gold' : 'text-green' }}">/{{ board.goal }}</span>
+</div>
 <table class="margin-center">
     <tbody>
         <tr>
