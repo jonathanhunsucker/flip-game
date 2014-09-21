@@ -10,6 +10,10 @@ app.config(function ($routeProvider) {
     });
 });
 app.directive('flClickdrag', function () {
+    var mouseIsDown = false;
+    angular.element(document).bind('mouseup', function () {
+        mouseIsDown = false;
+    });
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
@@ -31,10 +35,6 @@ app.directive('flClickdrag', function () {
             }
         }
     };
-});
-var mouseIsDown = false;
-angular.element(document).bind('mouseup', function () {
-    mouseIsDown = false;
 });
 
 function Tile(board, x, y, stateChar) {
