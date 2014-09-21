@@ -116,6 +116,7 @@ button.btn-ninja {
     font-family: Londrina;
     color: #dcdbff;
     text-shadow: #aeaeff 0.03em 0.03em 0;
+    text-decoration: none;
 }
 
 #logo .logo-highlight {
