@@ -181,7 +181,9 @@ Board.prototype.flip = function (direction) {
 
     this.turns++;
     this.addHistory(tilesBeforeFlip);
-    this.solved = this.tiles.filter(function (tile) {return tile.state == 'filled';}).length == this.tiles.length;
+    var filled = this.tiles.filter(function (tile) {return tile.state == 'filled';});
+    var possible = this.tiles.filter(function (tile) {return tile.state != 'negative';});
+    this.solved = filled.length == possible.length;
     return true;
 }
 Board.prototype.onKeyEvent = function (event) {
