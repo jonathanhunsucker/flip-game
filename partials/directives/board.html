@@ -1,4 +1,4 @@
-<table class="board board-small">
+<table class="board board-{{ attrs.size }}">
     <tbody>
         <tr ng-repeat="(y, row) in board.grid">
             <td ng-repeat="(x, tile) in row" class="tile tile-{{ tile.state }}"></td>

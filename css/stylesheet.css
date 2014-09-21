@@ -22,6 +22,11 @@ body {
     max-width: 50rem;
 }
 
+h3 {
+    font-family: Sinkin Sans;
+    color: #AEAEFF;
+}
+
 .text-center {
     text-align: center;
 }
@@ -53,22 +58,28 @@ body {
     display: none;
 }
 
-button {
+button, a.btn {
     background-color: #aeaeff;
     border: #dcdbff solid 0.0625em;
     border-radius: 0.3em;
     color: #FAFAFA;
+    display: inline-block;
     padding: 0.5em 1em;
     outline: none;
     font-family: "Sinkin Sans";
+    text-decoration: none;
 }
 
+<<<<<<< HEAD
 button:hover {
     background-color: #ffb97b;
     border:  #dea16b solid 0.0625em;
  }
 
 button.span-all {
+=======
+button.span-all, a.btn.span-all {
+>>>>>>> Add play page and beef up navigation
     height: 100%;
     width: 100%;
     background: none;
@@ -77,15 +88,19 @@ button.span-all {
     min-width: 2em;
 }
 
-button.span-all:hover {
+button.span-all:hover, a.btn.span-all:hover {
     content: url("../img/button2.svg");
 }
 
-button.btn-ninja {
+button.btn-ninja, a.btn.btn-ninja {
     background-color: transparent;
     border-width: 0;
     padding: 0;
     color: black;
+}
+
+button.btn-large, a.btn.btn-large {
+    font-size: 1.25em;
 }
 
 #header {
@@ -139,7 +154,6 @@ button.btn-ninja {
 }
 
 #moves {
-    position: absolute;
     font-family: Londrina;
     font-size: 3em;
     text-shadow: #aeaeff 0.03em 0.03em 0;
@@ -268,13 +282,4 @@ button.btn-ninja {
 .arrow.arrow-down:before {
     transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
-}
-
-h3 {
-    font-family: Sinkin Sans;
-    color: #AEAEFF;
-}
-
-.pull-left {
-    margin: .5em;
 }

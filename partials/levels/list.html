@@ -2,8 +2,8 @@
     <h3>{{ difficultyNames[difficulty] }}</h3>
     <div class="clearfix">
         <div class="pull-left" ng-repeat="board in level" ng-click="play(board)">
-            <div board object="board"></div>
-            <button>Play</button>
+            <board size="small"></board>
+            <a class="btn" href="#/play/{{ board.id }}">Play</a>
         </div>
     </div>
 </div>

@@ -22,8 +22,10 @@ function Board(tileAbstraction) {
     this.turns = 0;
     this.goal = tileAbstraction.goal;
     this.difficulty = tileAbstraction.difficulty;
+    this.id = tileAbstraction.id;
     this.history = new Array(); //stack
     this.grid = new Array(this.size);
+    this.solved = false;
     for (var i = 0 ; i < this.grid.length ; i++) {
         this.grid[i] = new Array(this.grid.length);
     }

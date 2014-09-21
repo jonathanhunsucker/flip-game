@@ -6,6 +6,15 @@ app.config(function ($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'partials/index.html',
         controller: 'IndexController'
+    }).when('/play/:id', {
+        templateUrl: 'partials/play.html',
+        controller: 'PlayController',
+        resolve: {
+            'board': function ($route, Boards) {
+                var boardId = parseInt($route.current.params.id);
+                return Boards.getById(boardId);
+            }
+        }
     }).when('/levels', {
         templateUrl: 'partials/levels/list.html',
         controller: 'LevelsController'
@@ -45,16 +54,18 @@ app.directive('flClickdrag', function () {
 
 app.directive('board', function () {
     return {
-        retrict: 'A',
+        restrict: 'E',
         templateUrl: 'partials/directives/board.html',
         link: function (scope, element, attrs) {
-            console.log('I was called');
+            attrs.size = attrs.size || 'normal';
+            scope.attrs = attrs;
         }
     }
 });
 
 app.service('Boards', function ($q, $http) {
     var abstracts = [{
+        'id': 0,
         'blueprint': [
             [1, 0],
             [0, 0],
@@ -62,6 +73,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 2,
         'difficulty': 0
     }, {
+        'id': 1,
         'blueprint': [
             [1, 0, 0, 0],
             [0, 0, 0, 0],
@@ -71,6 +83,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 4,
         'difficulty': 1
     }, {
+        'id': 2,
         'blueprint': [
             [0, -1, 0, 0],
             [0, 0, 1, 0],
@@ -80,6 +93,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 4,
         'difficulty': 1
     }, {
+        'id': 3,
         'blueprint': [
             [1, 0, 0, 0],
             [0, 0, 0, 0],
@@ -89,6 +103,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 4,
         'difficulty': 1
     }, {
+        'id': 4,
         'blueprint': [
             [1, 0, 0, 0],
             [0, 0, -1, 0],
@@ -98,6 +113,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 4,
         'difficulty': 1
     }, {
+        'id': 5,
         'blueprint': [
             [0, 0, 0, 0, 0, 0],
             [0, -1, 0, 0, -1, -1],
@@ -109,6 +125,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 6,
         'difficulty': 2
     }, {
+        'id': 6,
         'blueprint': [
             [1, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
@@ -120,6 +137,7 @@ app.service('Boards', function ($q, $http) {
         'goal': 6,
         'difficulty': 2
     }, {
+        'id': 7,
         'blueprint': [
             [-1, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, -1, 0],
@@ -157,12 +175,29 @@ app.service('Boards', function ($q, $http) {
             'goal': '?'
         });
     }
+    Boards.prototype.getById = function (boardId) {
+        var deferred = $q.defer();
+        for (var i = 0 ; i < abstracts.length ; i++) {
+            var board = abstracts[i];
+            if (board.id === boardId) {
+                deferred.resolve(new Board(board));
+                break;
+            }
+        }
+        return deferred.promise;
+    }
     Boards.prototype.getAll = function () {
         var boards = abstracts.map(function (abs) {
             return new Board(abs);
         });
         var deferred = $q.defer();
         deferred.resolve(boards);
+        return deferred.promise;
+    }
+    Boards.prototype.getFirst = function () {
+        var board = new Board(abstracts[0]);
+        var deferred = $q.defer();
+        deferred.resolve(board);
         return deferred.promise;
     }
     return new Boards();
@@ -187,27 +222,25 @@ app.controller('HeaderController', function ($scope) {
     };
 });
 
-app.controller('IndexController', function ($scope, Boards) {
+
+app.controller('IndexController', function ($scope, $location, Boards) {
+    Boards.getFirst().then(function (board) {
+        $scope.boardId = board.id;
+    });
+});
+
+app.controller('PlayController', function ($scope, board) {
     $scope.globalState = {
         'touchDownTileIsSelected': false
     };
 
-    setBoard(Boards.getLoadingBoard());
-
-    Boards.getA('medium').then(function (board) {
-        setBoard(board);
-    });
+    $scope.board = board;
 
     angular.element(document).bind('keydown', function (event) {
         $scope.$apply(function () {
             $scope.board.onKeyEvent(event);
         });
     });
-
-    function setBoard(board) {
-        $scope.boardIsLoading = false;
-        $scope.board = board;
-    }
 });
 
 app.controller('LevelsCreateController', function ($scope) {
@@ -235,10 +268,6 @@ app.controller('LevelsController', function ($scope, Boards) {
 
         $scope.levels = levels;
     });
-
-    $scope.play = function () {
-        ;
-    };
 });
 
 /*
