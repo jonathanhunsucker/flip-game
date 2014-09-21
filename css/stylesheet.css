@@ -70,16 +70,12 @@ button, a.btn {
     text-decoration: none;
 }
 
-<<<<<<< HEAD
-button:hover {
+button:hover, a.btn:hover {
     background-color: #ffb97b;
     border:  #dea16b solid 0.0625em;
  }
 
-button.span-all {
-=======
 button.span-all, a.btn.span-all {
->>>>>>> Add play page and beef up navigation
     height: 100%;
     width: 100%;
     background: none;
