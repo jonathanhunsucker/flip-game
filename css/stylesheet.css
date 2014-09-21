@@ -2,10 +2,14 @@
     font-family: "Londrina";
     src: url("../fonts/LondrinaSolid-Regular.otf");
 }
+@font-face {
+    font-family: "Sinkin Sans";
+    src: url("../fonts/SinkinSans-400Regular.otf");
+}
 
 html {
     box-sizing: border-box;
-    background-color: #EEEEEE;
+    background-color: #FAFAFA;
 }
 
 *, *:before, *:after {
@@ -48,9 +52,10 @@ button {
     background-color: #aeaeff;
     border: #dcdbff solid 0.0625em;
     border-radius: 0.3em;
-    color: #f9f9f9;
+    color: #FAFAFA;
     padding: 0.5em 1em;
     outline: none;
+    font-family: "Sinkin Sans";
 }
 
 button.span-all {
@@ -78,7 +83,7 @@ button.btn-ninja {
 
 #header .navigation {
     border: 0.0625em solid #dcdbff;
-    font-family: Londrina; 
+    font-family: "Sinkin Sans"; 
     font-size: 1.25em;
     text-align: right;
     margin: 0;
@@ -98,6 +103,7 @@ button.btn-ninja {
 #header .navigation li a {
     text-decoration: none;
     color: #aeaeff;
+    font-size: .6em;
 }
 
 #logo {
@@ -224,8 +230,8 @@ table {
 
 @media (min-width: 48em) {
     .tile {
-        width: 5em;
-        height: 5em;
+        width: 4em;
+        height: 4em;
     }
 }
 
