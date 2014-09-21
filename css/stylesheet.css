@@ -39,8 +39,8 @@ button.span-all {
 #text-logo {
     font-size: 4em;
     font-family: Londrina;
-    color: #aeaeff;
-    text-shadow: #dcdbff 0.03em 0.03em 0;
+    color: #dcdbff;
+    text-shadow: #aeaeff 0.03em 0.03em 0;
 }
 
 #text-logo .logo-highlight {
@@ -117,10 +117,6 @@ button {
         height: 1.8em;
     }
 
-    #logo {
-        height: 65px;
-    }
-
     #menu {
         height: 40px;
     }
@@ -137,10 +133,6 @@ button {
     .tile {
         width: 3em;
         height: 3em;
-    }
-
-    #logo {
-        height: 50px;
     }
 
     #menu {
