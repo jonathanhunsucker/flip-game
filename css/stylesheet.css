@@ -13,7 +13,7 @@ html {
 
 body {
     margin: 15px;
-    background-color: #EEEEEE;
+    background-color: #F9F9F9;
 }
 
 .text-center {
@@ -43,13 +43,21 @@ button.span-all {
     margin: 2.5px;
     background-color: #EEEDFF;
     padding: 5px;
-    border: 1px solid grey;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #aeaeff;
     border-radius: 5px;
 }
 
 table {
     margin-left: auto;
     margin-right: auto;
+}
+
+button {
+    background-color: rgba(0,0,0,0);
+    border: none;
+    outline: none;
 }
 
 .row {
@@ -65,12 +73,12 @@ table {
 
 .tile-filled {
     background-color: #FFD873;
-    box-shadow: inset 0 0 6px #ccad5c;
+    box-shadow: inset 0 0 8px #ccad5c;
 }
 
 .tile-empty {
     background-color: #DCDBFF;
-    box-shadow: inset 0 0 6px #b1b1bc;
+    box-shadow: inset 0 0 8px #aeaeff;
 }
 
 .tile-negative {
@@ -78,12 +86,18 @@ table {
 
 .tile-filled:hover {
     border-style: solid;
-    border-color: white;
+    border-color: #f9f9f9;
 }
 
 .bottom_button {
     position: relative;
     bottom: -30px;
+    background-color: #dcdbff;
+    border-style: solid;
+    border-color: #aeaeff;
+    border-width: 1px;
+    color: #f9f9f9;
+    font-size: 14px;
 }
 
 @media (min-width: 558px) {
@@ -132,27 +146,30 @@ table {
 }
 
 .tile-selected {
-    background-color: black;
+    background-color: #ffca48;
+    border-style: solid;
+    border-color: #f9f9f9;   
+    box-shadow: inset 0 0 8px #c79e38;
 }
 
 .arrow:before {
     display: inline-block;
-    content: "↪";
+    content: url("../img/button.svg");
     font-size: 2em;
 }
 
 .arrow.arrow-right:before {
-    transform: rotate(0deg);
+    transform: rotate(90deg);
 }
 
 .arrow.arrow-left:before {
-    transform: rotate(180deg);
-}
-
-.arrow.arrow-up:before {
     transform: rotate(270deg);
 }
 
+.arrow.arrow-up:before {
+    transform: rotate(0deg);
+}
+
 .arrow.arrow-down:before {
-    transform: rotate(90deg);
+    transform: rotate(180deg);
 }
