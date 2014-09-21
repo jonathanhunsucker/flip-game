@@ -22,6 +22,28 @@ body {
     text-align: center;
 }
 
+/* http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.hidden {
+    display: none;
+}
+
 button {
     background-color: #aeaeff;
     border: #dcdbff solid 0.0625em;
@@ -45,32 +67,48 @@ button.span-all:hover {
 }
 
 #header {
-    width: 100%;
-    display: inline-block;
 }
 
-#text-logo {
+#header .navigation {
+    border: 0.0625em solid #dcdbff;
+    font-size: 1.25em;
+    margin: 0;
+    padding: 0;
+}
+
+#header .navigation li {
+    background-color: #eeeeff;
+    list-style: none;
+    padding: 0.5em 1em;
+}
+
+#header .navigation li:not(:first-child) {
+    border-top: 0.0625em solid #dcdbff;
+}
+
+#header .navigation li a {
+    text-decoration: none;
+}
+
+#logo {
     font-size: 4em;
     font-family: Londrina;
     color: #dcdbff;
     text-shadow: #aeaeff 0.03em 0.03em 0;
 }
 
-#text-logo .logo-highlight {
+#logo .logo-highlight {
     color: #FFD873;
 }
 
 /*
- *
-    color: #eeeeff;
-    dcdbff;
-    aeaeff;
-    */
+#eeeeff
+#dcdbff
+#aeaeff
+*/
 
 #menu {
-   float: right;
-   position: relative;
-   top: 1em;
+   margin-top: 1.5em;
 }
 
 #game-controls {

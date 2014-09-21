@@ -20,6 +20,7 @@ app.config(function ($routeProvider) {
         controller: 'IndexController'
     });
 });
+
 app.directive('flClickdrag', function () {
     var mouseIsDown = false;
     angular.element(document).bind('mouseup', function () {
@@ -398,6 +399,22 @@ var tileAbstractions = {
         'goal': 6
     }
 };
+
+app.controller('HeaderController', function ($scope) {
+    $scope.navigation = {
+        'open': false,
+        'pages': [{
+            'url': '/',
+            'title': 'Game'
+        }, {
+            'url': '/levels',
+            'title': 'Levels'
+        }, {
+            'url': '/about',
+            'title': 'About'
+        }]
+    };
+});
 
 app.controller('IndexController', function ($scope) {
     var board = new Board(tileAbstractions.medium);

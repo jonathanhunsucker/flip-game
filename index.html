@@ -9,9 +9,18 @@
     <script src="js/script.js"></script>
 </head>
 <body ng-app="flip">
-    <div id="header">
-        <span id="text-logo">FL<span class="logo-highlight">i</span>P</span>
-        <img id="menu" alt="Menu" src="img/menu.svg" />
+    <div id="header" ng-controller="HeaderController">
+        <div class="clearfix">
+            <div class="pull-left">
+                <span id="logo">FL<span class="logo-highlight">i</span>P</span>
+            </div>
+            <div class="pull-right">
+                <img ng-click="navigation.open = !navigation.open" id="menu" alt="Menu" src="img/menu.svg" />
+            </div>
+        </div>
+        <ul class="navigation" ng-class="{'hidden': !navigation.open}">
+            <li ng-repeat="page in navigation.pages" ng-click="navigation.open = false"><a href="#{{ page.url }}">{{ page.title }}</a></li>
+        </ul>
     </div>
     <ng-view></ng-view>
 </body>
