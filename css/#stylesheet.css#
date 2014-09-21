@@ -41,7 +41,7 @@ button.span-all {
 }
 
 button.span-all:hover {
-    content: url("../img/button2.svg");
+   
 }
 
 #header {
@@ -74,10 +74,8 @@ button.span-all:hover {
 }
 
 #game-controls {
-    margin-top: 1em;
-    margin-right: auto;
-    margin-left: auto;
     text-align: center;
+    margin: auto;
 }
 
 #board {
