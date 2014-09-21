@@ -71,7 +71,9 @@ button.span-all:hover {
 
 #header .navigation {
     border: 0.0625em solid #dcdbff;
+    font-family: Londrina; 
     font-size: 1.25em;
+    text-align: right;
     margin: 0;
     padding: 0;
 }
@@ -88,6 +90,7 @@ button.span-all:hover {
 
 #header .navigation li a {
     text-decoration: none;
+    color: #aeaeff;
 }
 
 #logo {
