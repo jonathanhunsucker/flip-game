@@ -12,6 +12,7 @@ var KeyCodes = {
     R_KEY: 82,
     F_KEY: 70,
     U_KEY: 85,
+    Q_KEY: 81,
 };
 
 function Board(tileAbstraction) {
@@ -203,6 +204,8 @@ Board.prototype.onKeyEvent = function (event) {
         this.restart();
     } else if (k == KeyCodes.F_KEY || k == KeyCodes.U_KEY) {
         this.undo();
+    } else if (k == KeyCodes.Q_KEY) {
+        this.unselectAll();
     }
 }
 Board.prototype.cloneTiles = function( tiles ) {
