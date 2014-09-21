@@ -6,6 +6,9 @@ app.config(function ($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'partials/index.html',
         controller: 'IndexController'
+    }).when('/levels/create', {
+        templateUrl: 'partials/levels/create.html',
+        controller: 'LevelsCreateController'
     });
 });
 
@@ -143,6 +146,9 @@ app.controller('HeaderController', function ($scope) {
             'url': '/levels',
             'title': 'Levels'
         }, {
+            'url': '/levels/create',
+            'title': 'Create Levels'
+        }, {
             'url': '/about',
             'title': 'About'
         }]
@@ -170,6 +176,9 @@ app.controller('IndexController', function ($scope, Boards) {
         $scope.boardIsLoading = false;
         $scope.board = board;
     }
+});
+
+app.controller('LevelsCreateController', function ($scope) {
 });
 
 /*
