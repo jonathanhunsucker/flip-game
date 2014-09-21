@@ -1,3 +1,0 @@
-flask-sandboy
-flask-sqlalchemy
-mysql-python
