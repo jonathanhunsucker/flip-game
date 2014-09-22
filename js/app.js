@@ -324,7 +324,7 @@ app.service('Boards', function ($q, $http) {
             [-1, -1, 0, 0, 0, 0],
             [1, 0, 0, 0, 0, 0]
         ],
-        'goal': 6,
+        'goal': 8,
         'difficulty': 2
     }, { 
         'id': 25,
