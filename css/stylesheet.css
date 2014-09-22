@@ -31,6 +31,18 @@ h3 {
     text-align: center;
 }
 
+.text-green {
+    color: green;
+}
+
+.text-periwinkle {
+    color: #dcdbff;
+}
+
+.text-gold {
+    color: #FFD873;
+}
+
 .margin-center {
     margin-left: auto;
     margin-right: auto;
@@ -140,13 +152,8 @@ button.btn-large, a.btn.btn-large {
 #logo {
     font-size: 4em;
     font-family: Londrina;
-    color: #dcdbff;
     text-shadow: #aeaeff 0.03em 0.03em 0;
     text-decoration: none;
-}
-
-#logo .logo-highlight {
-    color: #FFD873;
 }
 
 /*
