@@ -413,7 +413,7 @@ app.service('Boards', function ($q, $http) {
         ],
         'goal': 6,
         'difficulty': 3
-    }{
+    }, {
         'id': 32,
         'blueprint': [
             [0, 0, 0, 0, 0, 0],
