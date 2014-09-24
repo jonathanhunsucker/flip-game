@@ -21,6 +21,9 @@ app.config(function ($routeProvider) {
     }).when('/levels/create', {
         templateUrl: 'partials/levels/create.html',
         controller: 'LevelsCreateController'
+    }).when('/about', {
+        templateUrl: 'partials/about.html',
+        controller: 'AboutController'
     });
 });
 
@@ -475,9 +478,6 @@ app.controller('HeaderController', function ($scope) {
             'url': '/levels',
             'title': 'Levels'
         }, {
-            'url': '/levels/create',
-            'title': 'Create Levels'
-        }, {
             'url': '/about',
             'title': 'About'
         }]
@@ -531,6 +531,8 @@ app.controller('LevelsController', function ($scope, Boards) {
         $scope.levels = levels;
     });
 });
+
+app.controller('AboutController', function () {});
 
 /*
 // for testing the board without having to click through the ui
