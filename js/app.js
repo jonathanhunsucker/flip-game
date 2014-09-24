@@ -348,7 +348,7 @@ app.service('Boards', function ($q, $http) {
             [0, 0, -1, -1, 0, 0],
             [0, 0, 1, 0, 0, 0]
         ],
-        'goal': 6,
+        'goal': 7,
         'difficulty': 2
     }, { 
         'id': 27,
@@ -400,6 +400,18 @@ app.service('Boards', function ($q, $http) {
         'difficulty': 3
     }, {
         'id': 31,
+        'blueprint': [
+            [0, -1, 0, -1, -1, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 1, 0, -1, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, -1, -1, 0, -1, 0],
+        ],
+        'goal': 6,
+        'difficulty': 3
+    }{
+        'id': 32,
         'blueprint': [
             [0, 0, 0, 0, 0, 0],
             [0, -1, 0, 0, -1, -1],
