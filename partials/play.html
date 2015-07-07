@@ -1,6 +1,4 @@
-<div id="moves" class="abs-top-left">
-    <span class="{{ !board.solved ? 'text-periwinkle' : 'text-green' }}">{{ board.turns }}</span><span class="{{ !board.solved ? 'text-gold' : 'text-green' }}">/{{ board.goal }}</span>
-</div>
+<div>Moves used: {{ board.turns }} of {{ board.goal }}</div>
 <table class="margin-center">
     <tbody>
         <tr>
@@ -26,9 +24,11 @@
         </tr>
     </tbody>
 </table>
-<div id="game-controls">
-    <button ng-click="board.restart()">Restart</button>
-    <button ng-click="board.undo()">Undo move</button>
-    <button ng-click="board.unselectAll()">Unselect All</button>
-    <a class="btn" href="#/play/{{ board.id+1 }}" ng-show="board.solved">Next Level</a>
+<div class="game-controls">
+    <p ng-show="board.solved"><a class="btn" href="#/play/{{ board.id+1 }}">Next level!</a></p>
+    <p ng-show="board.solved_in_too_many_moves">Solved in too many moves. Do better.</p>
+    <div>
+        <button ng-click="board.undo()">Undo move</button>
+        <button ng-click="board.restart()">Restart</button>
+    </div>
 </div>

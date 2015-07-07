@@ -1,19 +1,12 @@
-@font-face {
-    font-family: "Londrina";
-    src: url("../fonts/LondrinaSolid-Regular.otf");
-}
-@font-face {
-    font-family: "Sinkin Sans";
-    src: url("../fonts/SinkinSans-400Regular.otf");
-}
-
 html {
     box-sizing: border-box;
-    background-color: #FAFAFA;
+    background-color: #fafafa;
 }
 
 *, *:before, *:after {
     box-sizing: inherit;
+    font-family: monospace;
+    font-size: 20px;
 }
 
 body {
@@ -22,25 +15,12 @@ body {
     max-width: 50rem;
 }
 
-h3 {
-    font-family: Sinkin Sans;
-    color: #AEAEFF;
+a:link, a:visited {
+    color: black;
 }
 
 .text-center {
     text-align: center;
-}
-
-.text-green {
-    color: green;
-}
-
-.text-periwinkle {
-    color: #dcdbff;
-}
-
-.text-gold {
-    color: #FFD873;
 }
 
 .margin-center {
@@ -80,21 +60,24 @@ h3 {
     left: 0;
 }
 
+.spaced:not(:last-child) {
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
 button, a.btn {
-    background-color: #aeaeff;
-    border: #dcdbff solid 0.0625em;
-    border-radius: 0.3em;
-    color: #FAFAFA;
+    background-color: black;
+    border: gray solid 0.0625em;
+    color: white;
     display: inline-block;
     padding: 0.5em 1em;
     outline: none;
-    font-family: "Sinkin Sans";
     text-decoration: none;
 }
 
 button:hover, a.btn:hover {
-    background-color: #ffb97b;
-    border:  #dea16b solid 0.0625em;
+    background-color: gray;
+    border: gray solid 0.0625em;
  }
 
 button.span-all, a.btn.span-all {
@@ -125,35 +108,25 @@ button.btn-large, a.btn.btn-large {
 }
 
 #header .navigation {
-    border: 0.0625em solid #dcdbff;
-    font-family: "Sinkin Sans"; 
+    border: 0.0625em solid gray;
     font-size: 1.25em;
-    text-align: right;
     margin: 0;
     padding: 0;
 }
 
 #header .navigation li {
-    background-color: #eeeeff;
+    background-color: gray;
     list-style: none;
-    padding: 0.5em 1em;
 }
 
 #header .navigation li:not(:first-child) {
-    border-top: 0.0625em solid #dcdbff;
+    border-top: 0.0625em solid lightgray;
 }
 
 #header .navigation li a {
-    text-decoration: none;
-    color: #aeaeff;
-    font-size: .6em;
-}
-
-#logo {
-    font-size: 4em;
-    font-family: Londrina;
-    text-shadow: #aeaeff 0.03em 0.03em 0;
-    text-decoration: none;
+    color: white;
+    padding: 0.5em 1em;
+    display: block;
 }
 
 /*
@@ -162,25 +135,7 @@ button.btn-large, a.btn.btn-large {
 #aeaeff
 */
 
-#menu {
-   margin-top: 1.5em;
-}
-
-#moves {
-    font-family: Londrina;
-    font-size: 3em;
-    text-shadow: #aeaeff 0.03em 0.03em 0;
-}
-
-#current-moves {
-    color: #dcdbff;
-}
-
-#goal {
-    color: #ffd873;
-}
-
-#game-controls {
+.game-controls {
     margin-top: 1em;
     margin-right: auto;
     margin-left: auto;
@@ -189,10 +144,8 @@ button.btn-large, a.btn.btn-large {
 
 .board {
     margin: 0.2em;
-    background-color: #EEEDFF;
     padding: 0.3em;
-    border: 0.0625em solid #aeaeff;
-    border-radius: 0.3em;
+    border: 0.0625em solid gray;
 }
 
 .board.board-small {
@@ -207,42 +160,35 @@ button.btn-large, a.btn.btn-large {
 .tile {
     -webkit-user-select: none;
     -moz-user-select: none;
-    border-radius: 0.3em;
     width: 1.5em;
     height: 1.5em;
 }
 
-.tile-filled {
-    background-color: #FFD873;
-    box-shadow: inset 0 0 0.3em #ccad5c;
+.tile.tile-filled {
+    background-color: darkgray;
+    border: outset 0.3em lightgray;
 }
 
-.tile-empty {
-    background-color: #DCDBFF;
-    box-shadow: inset 0 0 0.3em #b1b1bc;
+.tile.tile-filled:not(.tile-selected):hover {
+    background-color: lightgray;
 }
 
-.tile-negative {
+.tile.tile-empty {
+    background-color: rgb(200, 200, 200);
+    border: inset 0.3em lightgray;
 }
 
-.tile-filled:hover {
-    border-style: solid;
-    border-color: #f9f9f9;
+.tile.tile-negative {
 }
 
-.tile-selected {
-    background-color: #ffb97b;
-    box-shadow: inset 0 0 8px #dea16b;
+.tile.tile-selected {
+    background-color: rgb(255, 255, 100);
 }
 
 @media (min-width: 20em) {
     .tile {
         width: 1.8em;
         height: 1.8em;
-    }
-
-    #menu {
-        height: 2em;
     }
 }
 
@@ -258,10 +204,6 @@ button.btn-large, a.btn.btn-large {
         width: 3em;
         height: 3em;
     }
-
-    #menu {
-        height: 2.5em;
-    }
 }
 
 @media (min-width: 48em) {
@@ -272,8 +214,9 @@ button.btn-large, a.btn.btn-large {
 }
 
 .arrow:before {
+    color: black;
     display: inline-block;
-    content: url("../img/button.svg");
+    content: '↥';
     width: 1.5em;
 }
 

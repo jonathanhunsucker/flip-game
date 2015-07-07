@@ -184,11 +184,15 @@ Board.prototype.flip = function (direction) {
 
     this.turns++;
     this.addHistory(tilesBeforeFlip);
-    var filled = this.tiles.filter(function (tile) {return tile.state == 'filled';});
-    var possible = this.tiles.filter(function (tile) {return tile.state != 'negative';});
-    this.solved = (filled.length == possible.length) && (this.turns <= this.goal);
+    this.calculateSolvedness();
     return true;
 }
+Board.prototype.calculateSolvedness = function () {
+    var filled = this.tiles.filter(function (tile) {return tile.state == 'filled';});
+    var possible = this.tiles.filter(function (tile) {return tile.state != 'negative';});
+    this.solved_in_too_many_moves = filled.length == possible.length;
+    this.solved = this.solved_in_too_many_moved && this.turns <= this.goal;
+};
 Board.prototype.onKeyEvent = function (event) {
     var k = event.keyCode;
 
@@ -200,12 +204,10 @@ Board.prototype.onKeyEvent = function (event) {
         this.flip('down');
     } else if (k == KeyCodes.LEFT_ARROW || k == KeyCodes.A_KEY) {
         this.flip('left');
-    } else if (k == KeyCodes.R_KEY) {
+    } else if (k == KeyCodes.R_KEY || k == KeyCodes.Q_KEY) {
         this.restart();
     } else if (k == KeyCodes.F_KEY || k == KeyCodes.U_KEY) {
         this.undo();
-    } else if (k == KeyCodes.Q_KEY) {
-        this.unselectAll();
     }
 }
 Board.prototype.cloneTiles = function( tiles ) {
@@ -239,6 +241,7 @@ Board.prototype.undo = function() {
         this.grid[tile.y][tile.x] = tile;
     }
     this.turns--;
+    this.calculateSolvedness();
 }
 Board.prototype.restart = function() {
     while (this.history.length > 0) {
