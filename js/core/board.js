@@ -190,8 +190,9 @@ Board.prototype.flip = function (direction) {
 Board.prototype.calculateSolvedness = function () {
     var filled = this.tiles.filter(function (tile) {return tile.state == 'filled';});
     var possible = this.tiles.filter(function (tile) {return tile.state != 'negative';});
-    this.solved_in_too_many_moves = filled.length == possible.length;
-    this.solved = this.solved_in_too_many_moved && this.turns <= this.goal;
+    this.board_is_filled = filled.length === possible.length;
+    this.solved_in_too_many_moves = this.turns > this.goal;
+    this.solved = this.board_is_filled && this.solved_in_too_many_moves === false;
 };
 Board.prototype.onKeyEvent = function (event) {
     var k = event.keyCode;

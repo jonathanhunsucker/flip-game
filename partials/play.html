@@ -26,7 +26,7 @@
 </table>
 <div class="game-controls">
     <p ng-show="board.solved"><a class="btn" href="#/play/{{ board.id+1 }}">Next level!</a></p>
-    <p ng-show="board.solved_in_too_many_moves">Solved in too many moves. Do better.</p>
+    <p ng-show="board.solved_in_too_many_moves">Solved in too many moves. Try again.</p>
     <div>
         <button ng-click="board.undo()">Undo move</button>
         <button ng-click="board.restart()">Restart</button>
